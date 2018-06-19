@@ -93,29 +93,22 @@ class _MyHomePageState extends State<MyHomePage> {
           // Here we take the value from the MyHomePage object that was created by
           // the App.build method, and use it to set our appbar title.
           ),
-      body: new Container(
-        constraints: BoxConstraints.tightFor(width: 100.0,height: 100.0),
-        child: FutureBuilder<List<ui.Image>>(
-          future: assetMeasureFuture,
-          builder: (contextFuture, snap) {
-            AsyncSnapshot<List<ui.Image>> snapshotImageDimensions = snap;
-            if (snap.data != null) {
-              double wLeft = snapshotImageDimensions.data[0].width.toDouble();
-              double hLeft = snapshotImageDimensions.data[0].height.toDouble();
-              double wRight = snapshotImageDimensions.data[1].width.toDouble();
-              double hRight = snapshotImageDimensions.data[1].height.toDouble();
+      body: FutureBuilder<List<ui.Image>>(
+        future: assetMeasureFuture,
+        builder: (contextFuture, snap) {
+          AsyncSnapshot<List<ui.Image>> snapshotImageDimensions = snap;
+          if (snap.data != null) {
+            double wLeft = snapshotImageDimensions.data[0].width.toDouble();
+            double hLeft = snapshotImageDimensions.data[0].height.toDouble();
+            double wRight = snapshotImageDimensions.data[1].width.toDouble();
+            double hRight = snapshotImageDimensions.data[1].height.toDouble();
 
-              return ListView.builder(
-                itemBuilder: (_, index) => buildCommentWidget(
-                    '$index', wLeft, hLeft, wRight, hRight, context),
-                itemCount: 20,
-                controller: _scrollController,
-              );
-            } else {
-              return Text('loading...');
-            }
-          },
-        ),
+            return buildCommentWidget(
+                "sdfas", wLeft, hLeft, wRight, hRight, context);
+          } else {
+            return Text('loading...');
+          }
+        },
       ),
       floatingActionButton: new FloatingActionButton(
         onPressed: _incrementCounter,
